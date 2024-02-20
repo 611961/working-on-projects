@@ -1,0 +1,132 @@
+#include<bits/stdc++.h>
+#include<conio.h>
+using namespace std;
+
+
+class Bank{
+	private:
+		int total;
+		string Id;         // taking input while updating
+		struct person{
+			string id,name;
+			int contact,cash;
+		}person[100];             //structure ki array bna d
+		
+		public:
+			Bank(){
+				total=0;
+			}
+			
+			void choice();          // for choice of button
+			void persondata();    //to add new data declare a function
+			void show();            // to show to all account 
+			void update();         // to update the data
+			void searchaccnt();     // to search any account
+			void transaction();
+};
+
+
+int main(){
+	Bank obj;
+	obj.choice();
+}
+
+
+	void Bank::choice(){
+		char ch;
+		while(1){
+		cout<<"Click:->\n";
+		cout<<"1. For creating new account \n";
+		cout<<"2. For view cutomer list\n";
+		cout<<"3. Update the info of existing account\n";
+		cout<<"4. For check the details of existing account\n";
+		cout<<"5. For transaction\n";
+		cout<<"6. For removing account\n";
+		cout<<"7. Exit\n";
+		
+		ch=getch();
+		
+		switch (ch){
+			case '1':
+				Bank::persondata();        //scopresolution se clas k function ko call access kr re
+				break;
+		    case '2':
+		    	Bank::show();
+		    	break;
+		    	case '3': Bank::update();
+		    	break;
+		    	case '4': Bank::searchaccnt();
+		    	break;
+		    	case'5': Bank::transaction();
+			}
+		}
+	}
+
+
+void Bank::persondata(){                   // bank class ke function me algo bna re
+	cout<<"Enter the data of person"<<total+1<<endl;
+	cout<<"enter name\n";
+	cin>>person[total].name;
+	//person nam ka ary bnaye hai jo 1 blok(indx) me nam,id,data store krega
+	//total(indx) ki value ++ hoti jayegi or data bhi next krke store krta rhega
+	cout<<"enter Id: ";
+	cin>>person[total].id;
+	cout<<"enter contact:";
+	cin>>person[total].contact;
+	cout<<"enter Cash:";
+	cin>>person[total].cash;
+	total++;
+}
+
+void Bank::show(){
+	for(int i=0;i<total;i++){
+		cout<<"Detail of person "<<i+1<<endl;
+		cout<<"Name :"<<person[i].name<<endl;
+		cout<<"Id : "<<person[i].id<<endl;
+		cout<<"Cash : "<<person[i].cash<<endl;
+		cout<<"Contact : "<<person[i].contact<<endl;
+	}
+}
+void Bank::update(){
+	cout<<"Enter the id of student whose data want to update\n";
+	cin>>Id;
+	for(int i=0;i<total;i++){
+		if(Id==person[i].id){ 
+			cout<<"Previos data : \n";     //show previous
+			
+		cout<<"Name :"<<person[i].name<<endl;
+		cout<<"Id : "<<person[i].id<<endl;
+		cout<<"Cash : "<<person[i].cash<<endl;
+		cout<<"Contact : "<<person[i].contact<<endl;
+		cout<<endl;
+		
+		cout<<"Enter New data:"<<endl;     //updating
+		
+			cout<<"enter name\n";
+	        cin>>person[i].name;
+			cout<<"enter Id: ";
+			cin>>person[i].id;
+			cout<<"enter contact:";
+			cin>>person[i].contact;
+			cout<<"enter Cash:";
+			cin>>person[i].cash;
+			}
+		}
+	}
+
+void Bank::searchaccnt(){
+	cout<<"Enter the id of student whose data want to search\n";
+	cin>>Id;
+	for(int i=0;i<total;i++){
+		if(Id==person[i].id){
+			cout<<"Detail of person "<<i+1<<endl;
+		cout<<"Name :"<<person[i].name<<endl;
+		cout<<"Id : "<<person[i].id<<endl;
+		cout<<"Cash : "<<person[i].cash<<endl;
+		cout<<"Contact : "<<person[i].contact<<endl;
+		}
+	}
+}
+void Bank::transaction(){
+	
+}
