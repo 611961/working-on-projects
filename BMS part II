@@ -1,0 +1,91 @@
+void Bank::transaction(){
+	char ch;
+	int cash;
+	backk:
+	cout<<"Enter the id of student for transaction\n";
+	cin>>Id;
+	
+	for(int i=0;i<total;i++){
+		if(Id==person[i].id){
+				cout<<"Name :"<<person[i].name<<endl;
+		cout<<"Id : "<<person[i].id<<endl;
+		cout<<"Contact : "<<person[i].contact<<endl;
+		
+		cout<<"Existing Cash : "<<person[i].cash<<endl;
+		cout<<"Press 1 for deposit:\n";
+		cout<<"Press 2 for withdraw\n";
+		
+		ch=getch();
+		switch(ch){
+			case '1':
+				cout<<"How much cash he want to deposit\n";
+				cin>>cash;
+				person[i].cash+=cash;
+				cout<<"Your new cash is : "<<person[i].cash<<endl;
+				break;
+				case '2': 
+				back:
+				cout<<"How much cash he want to withdraw\n";
+				cin>>cash;
+				if(cash>person[i].cash){
+					cout<<"Don't have sufficient balance\n";
+					cout<<" Cash in account : "<<person[i].cash<<endl;
+					Sleep(3000);   // wait for 3 sec
+					goto back;
+				}
+				else{
+					person[i].cash -= cash;
+					cout<<"Your new balance is :"<<person[i].cash<<endl;
+					break;
+				}
+				default :
+					cout<<"Invalid input\n";
+			}
+			break;      // we have to break (if) aftr prforming opration
+			             // otherwise loop will still terminate after got the id
+		}
+		
+		if(i==total-1){      // if i reach at last and accnt not found
+			cout<<"No such record found\n";
+			goto backk;
+		}
+	}
+}
+
+ void Bank::toremove(){
+ 	char ch;
+ 	cout<<"Press 1 to delete 1 account\n";
+	  cout<<"Press 2 to  delete all accounts\n";
+	  
+	  switch(ch){
+	  	
+          case '1':
+          	cout<<"Enter the id for deletion";
+	  cin>>Id;
+	  for(int i=0;i<total;i++){
+	  	if(Id==person[i].id){
+	  		for(int j=i ;j<total;j++){
+	  		person[j].name=person[j+1].name;
+	  		person[j].id=person[j+1].id;
+	  		person[j].contact=person[j+1].contact;
+	  		person[j].cash=person[j+1].cash;
+	  		total--;
+			  break;
+	  			}	
+			}
+			if(i==total-1){      // if i reach at last and accnt not found
+			cout<<"No such record found\n";
+			}
+		}
+		break;
+	 case '2':
+	 	total=0;
+	 	cout<<"deleting all accounts\n";
+	 	total=0;
+	 	break;
+	 	
+	 	default :
+		cout<<"Invalid input\n";
+		break;
+	}
+}
